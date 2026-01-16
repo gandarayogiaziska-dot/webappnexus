@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+/* NAVBAR */
+.navbar{
+  width:100%;
+  background:#0b3c9d;
+}
+
+/* WRAPPER */
+.nav-wrapper{
+  max-width:1200px;
+  margin:0 auto;
+  padding:22px 18px;
+}
+
+/* GRID UTAMA */
+.nav-container{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+}
+
+/* TENGAH (LOGO + SEARCH) */
+.nav-middle{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+}
+
+/* BRAND */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#fff;
+  font-weight:700;
+  font-size:20px;
+  white-space:nowrap;
+}
+
+.brand img{
+  height:34px;
+}
+
+/* SEARCH (PC ONLY) */
+.search-box input{
+  width:420px;
+  padding:12px 16px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  font-size:14px;
+}
+
+/* HAMBURGER */
+.hamburger{
+  justify-self:end;
+  width:32px;
+  height:26px;
+  display:none;
+  flex-direction:column;
+  justify-content:space-between;
+  cursor:pointer;
+}
+
+.hamburger span{
+  height:4px;
+  background:#fff;
+  border-radius:3px;
+}
+
+/* MOBILE MENU */
+.mobile-menu{
+  display:none;
+  background:#0b3c9d;
+}
+
+.mobile-menu a{
+  display:block;
+  padding:14px 18px;
+  color:#fff;
+  text-decoration:none;
+  border-top:1px solid rgba(255,255,255,.15);
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .search-box{
+    display:none;
+  }
+
+  .nav-container{
+    grid-template-columns:1fr auto auto;
+    column-gap:28px;
+  }
+
+  /* 🔑 INI YANG NGESER KE KIRI */
+  .nav-middle{
+    justify-self:start;
+    margin-left:4px; /* geser halus ke kiri */
+  }
+
+  .hamburger{
+    display:flex;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="nav-wrapper">
+
+    <div class="nav-container">
+      
+      <!-- BRAND + SEARCH -->
+      <div class="nav-middle">
+        <div class="brand">
+          <img src="https://ik.imagekit.io/imyycpzx3/ChatGPT%20Image%205%20Okt%202025,%2006.34.35.png?updatedAt=1759621490283" alt="Logo">
+          <span>NEXUS STORE</span>
+        </div>
+
+        <div class="search-box">
+          <input type="text" placeholder="Cari game atau produk">
+        </div>
+      </div>
+
+      <!-- HAMBURGER -->
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="menu">
+    <a href="#">Game</a>
+    <a href="#">Voucher</a>
+    <a href="#">Top Up</a>
+    <a href="#">Jasa</a>
+  </div>
+</nav>
+
+<script>
+function toggleMenu(){
+  const menu = document.getElementById("menu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>

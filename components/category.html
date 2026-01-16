@@ -1,0 +1,116 @@
+<style>
+/* ================================
+   CATEGORY SECTION
+================================ */
+.category-section {
+  background: #fff;
+  padding: 28px 0;
+  margin-top: 24px;
+}
+
+.category-container {
+  max-width: 1350px;
+  margin: auto;
+  padding: 0 16px;
+}
+
+.category-title {
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* ================================
+   DESKTOP GRID
+================================ */
+.category-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(161px, 1fr));
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.category-item {
+  width: 161px;
+  height: 159px;
+
+  border-radius: 12px;
+  background-size: cover;       /* KUNCI */
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+
+.category-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0;           /* PENTING */
+}
+
+
+.category-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top; /* INI KUNCI */
+}
+
+
+
+.category-item span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+.category-item:hover {
+  background: #163d8a;
+  transform: translateY(-4px);
+}
+
+/* ================================
+   MOBILE – HORIZONTAL SWIPE
+================================ */
+@media (max-width: 768px) {
+  .category-list {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .category-item {
+    flex: 0 0 auto;
+    width: 140px;   /* KUNCI: ini bikin 2,5 box terlihat */
+    height: 130px;
+  }
+
+  .category-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+  .category-item span {
+    font-size: 11px;
+    text-align: center;
+  }
+}
+
+</style>
+
+<section class="category-section">
+  <div class="category-container">
+    <h2 class="category-title">Category</h2>
+
+    <div class="category-list" id="category-list">
+      <!-- Category akan di-inject dari Supabase -->
+    </div>
+  </div>
+</section>

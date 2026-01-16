@@ -1,0 +1,208 @@
+<!-- ===================== FOOTER HTML ===================== -->
+<style>
+:root {
+    --footer-bg: #222529;
+    --footer-text-color: #adb5bd;
+    --footer-heading-color: #fff;
+    --footer-link-color: #adb5bd;
+    --footer-link-hover-color: #fff;
+    --footer-border-color: #3b3f44;
+}
+
+.footer-classic {
+    background-color: var(--footer-bg);
+    color: var(--footer-text-color);
+    padding: 2rem 1rem;
+    font-family: Arial, sans-serif;
+}
+
+.footer-classic__container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.footer-classic a {
+    color: var(--footer-link-color);
+    text-decoration: none;
+}
+
+.footer-classic a:hover {
+    color: var(--footer-link-hover-color);
+    text-decoration: underline;
+}
+
+.footer-classic__main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    border-top: 1px solid var(--footer-border-color);
+    padding-top: 2rem;
+}
+
+.footer-classic__brand .logo {
+    display: block;
+    width: 120px;
+    margin-bottom: 1rem;
+}
+
+.footer-classic__brand p {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.footer-classic__heading {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--footer-heading-color);
+    margin-bottom: 1rem;
+}
+
+.footer-classic__links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-classic__links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-classic__bottom {
+    padding-top: 1.5rem;
+    font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.footer-classic__social ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ===================== TEAM GRID ===================== */
+/* Mobile: 1 baris scroll horizontal, 2+½ card visible */
+.team-grid {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    scrollbar-width: none; /* Firefox hide scrollbar */
+}
+
+.team-grid::-webkit-scrollbar {
+    display: none; /* Chrome/Safari hide scrollbar */
+}
+
+.team-grid img {
+    flex: 0 0 calc((100% / 2.5) - 0.6rem); /* 2+½ card visible */
+    height: 130px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+/* ===================== MEDIA QUERIES ===================== */
+@media (min-width: 768px) {
+    /* Desktop: grid 4x2 */
+    .footer-classic__main {
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 2rem;
+    }
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 140px);
+        gap: 1rem;
+        justify-content: center;
+    }
+    .team-grid img {
+        flex: unset;
+        width: 140px;
+        height: 130px;
+    }
+    .footer-classic__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+    .team-member {
+    position: relative;
+    display: inline-block;
+}
+
+.team-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 4px 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 0 0 8px 8px;
+}
+
+.team-member:hover .team-info {
+    opacity: 1;
+}
+
+}
+</style>
+
+<footer class="footer-classic">
+    <div class="footer-classic__container">
+        
+       <div class="team-grid" id="team-grid">
+    <!-- Foto tim akan di-load via main.js -->
+</div>
+
+        <!-- ===================== MAIN FOOTER ===================== -->
+        <div class="footer-classic__main">
+            <!-- Column 1: Brand -->
+            <div class="footer-classic__brand">
+                <a href="#" class="logo">
+                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0 H100 V40 H0 Z M10 10 H90 V30 H10 Z"></path>
+                    </svg>
+                </a>
+                <p>Providing high-quality solutions and templates to empower creators and developers around the world.</p>
+            </div>
+
+            <!-- Column 2: Links -->
+            <div class="footer-classic__links">
+                <h3 class="footer-classic__heading">Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+           
+
+        <!-- Footer Bottom -->
+        <div class="footer-classic__bottom">
+            <p>© 2026 Your Company. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <nav class="footer-classic__social" aria-label="Social Media">
+                <ul>
+                    <li><a href="#" aria-label="Facebook">FB</a></li>
+                    <li><a href="#" aria-label="Twitter">TW</a></li>
+                    <li><a href="#" aria-label="LinkedIn">LI</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</footer>

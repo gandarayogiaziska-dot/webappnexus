@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Product Grid</title>
+
+<style>
+/* =========================
+   GLOBAL
+========================= */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+}
+
+/* =========================
+   PRODUCT SECTION (FULL)
+========================= */
+.product-section {
+  width: 100%;
+  padding: 32px 0; /* HAPUS padding kiri kanan */
+}
+
+.product-container {
+  max-width: 1350px;      /* ⬅️ SAMA DENGAN CATEGORY */
+  margin: 0 auto;
+  padding: 0 16px;        /* ⬅️ SAMA DENGAN CATEGORY */
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 164px);
+  gap: 16px;
+  justify-content: center;
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+.product-card {
+  width: 164px;
+  height: 364px;
+
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+
+  text-decoration: none;
+  color: #111;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+
+/* IMAGE */
+.product-thumb {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.product-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* DISCOUNT BADGE */
+.discount-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+
+  background: #ff3b3b;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+/* INFO */
+.product-info {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.product-title {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-category {
+  font-size: 11px;
+  color: #888;
+}
+
+/* PRICE */
+.product-price {
+  margin-top: auto;
+}
+
+.old-price {
+  font-size: 11px;
+  color: #999;
+  text-decoration: line-through;
+  display: block;
+}
+
+.new-price {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ff6a00;
+}
+
+/* META */
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #666;
+}
+
+/* =========================
+   MOBILE SWIPE (OPSIONAL)
+========================= */
+@media (max-width: 768px) {
+  .product-container {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+  }
+
+  .product-card {
+    flex: 0 0 auto;
+  }
+}
+
+</style>
+<section class="product-section">
+  <div class="product-container" id="product-container">
+    <!-- Product card akan di-inject dari Supabase -->
+  </div>
+</section>

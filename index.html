@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Store</title>
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <style>
+    /* Tombol musik */
+    .music-btn-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .music-btn-wrapper button {
+      padding: 8px 16px;
+      background-color: #1b4db1;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+
+    .music-btn-wrapper button:hover {
+      background-color: #0f2f6d;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TEMPAT KOMPONEN -->
+  <div id="navbar"></div>
+
+  <!-- Tombol Play & Pause Musik -->
+  <div class="music-btn-wrapper">
+    <button id="playMusicBtn">▶ Play Musik</button>
+    <button id="pauseMusicBtn">⏸ Pause Musik</button>
+  </div>
+
+  <audio id="bgMusic" src="https://mrhiptnzoehrueolbpdm.supabase.co/storage/v1/object/public/lagu/nexus%20store.mp3" loop></audio>
+
+  <!-- Banner sekarang langsung inject dari Supabase -->
+  <div class="banner-wrapper">
+    <div id="banner-container"></div>
+  </div>
+
+  <div id="featured"></div>
+  <div id="category"></div>
+  <div id="product"></div>
+  <div id="teamContainer"></div>
+  <div id="footer-container"></div>
+
+  <script>
+    async function loadComponent(selector, url) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Gagal load ${url}`);
+        const html = await res.text();
+        document.querySelector(selector).innerHTML = html;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // Load komponen statis
+    loadComponent('#navbar', 'components/navbar.html');
+    loadComponent('#featured', 'components/featured-games.html');
+    loadComponent('#category', 'components/category.html');
+    loadComponent('#product', 'components/product.html');
+    loadComponent('#footer-container', 'components/footer.html');
+
+    // Musik Play / Pause
+    const music = document.getElementById('bgMusic');
+    const playBtn = document.getElementById('playMusicBtn');
+    const pauseBtn = document.getElementById('pauseMusicBtn');
+
+    playBtn.addEventListener('click', () => {
+      music.play();
+    });
+
+    pauseBtn.addEventListener('click', () => {
+      music.pause();
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script type="module" src="./assets/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+</body>
+</html>

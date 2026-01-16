@@ -1,0 +1,87 @@
+<style>
+/* ===== BANNER ===== */
+/* ===== BANNER ===== */
+.banner-wrapper {
+  width: 100vw;        /* pastikan full screen */
+  margin: 0;           /* hilangkan auto */
+  padding: 0;          /* hilangkan padding */
+}
+
+.banner {
+  width: 100%;
+  height: 551px;       /* desktop */
+  max-width: 1317px;   /* desktop max-width */
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  margin: 0 auto;      /* center desktop */
+  position: relative;
+}
+
+.banner video,
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* crop otomatis tapi tetap center */
+  display: block;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .banner-wrapper {
+    width: 100vw;       /* full width mobile */
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .banner {
+    width: 100vw;       /* full width mobile */
+    height: auto;
+    aspect-ratio: 1317/551; /* proporsional desktop */
+    border-radius: 0;
+    margin: 0;          /* pastikan centered */
+  }
+
+  .banner video,
+  .banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* crop otomatis tapi tetap center */
+  }
+}
+/* MOBILE */
+@media (max-width: 768px) {
+  .banner-wrapper {
+    width: 100vw;     /* pastikan full screen width */
+    max-width: 100%;  /* override max-width desktop */
+    padding: 0;       /* hilangkan padding */
+    margin: 0;        /* hilangkan margin auto */
+  }
+
+  .banner {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1317 / 551; /* proporsional */
+    border-radius: 0;
+    display: block;
+    margin: 0 auto;   /* pastikan center */
+  }
+}
+
+
+
+
+
+
+
+
+</style>
+
+<div class="banner-wrapper">
+  <div class="banner" id="banner-content">
+    <!-- Konten Supabase akan di-inject di sini -->
+  </div>
+</div>
+
+
