@@ -188,6 +188,7 @@ async function loadProducts(categoryId = null) {
     const card = document.createElement('a');
     card.href = "#"; // tombol hapus, jadi link tidak dipakai
     card.className = 'product-card';
+    card.href = `buy.html?id=${p.id}`;
     card.innerHTML = `
       <div class="product-thumb">
         ${p.old_price && p.old_price > p.price ? `<span class="discount-badge">${Math.round((1 - p.price/p.old_price)*100)}%</span>` : ''}
@@ -201,9 +202,10 @@ async function loadProducts(categoryId = null) {
           <span class="new-price">Rp${p.price.toLocaleString()}</span>
         </div>
         <div class="product-meta">
-          <span>${p.total_sold || 0} terjual</span>
-          <span>⭐ ${p.rating || 0}</span>
-        </div>
+  <span>${p.total_sold || 0} terjual</span>
+  <span class="product-stock">Stock ${p.stock ?? 0}</span>
+  <span>⭐ ${p.rating || 0}</span>
+</div>
       </div>
     `;
     container.appendChild(card);
