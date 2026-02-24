@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Buy Product</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.buy-wrapper {
+  background: white;
+  max-width: 420px;
+  width: 100%;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+.buy-image {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.buy-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.buy-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.buy-price {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ff6a00;
+  margin-bottom: 5px;
+}
+
+.buy-stock {
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.buy-stock.low { color: red; }
+
+.qty-wrapper {
+  margin: 15px 0;
+}
+
+.qty-wrapper input {
+  width: 80px;
+  padding: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.buy-btn {
+  width: 100%;
+  padding: 12px;
+  background: #25D366;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+.buy-btn:hover {
+  opacity: 0.9;
+}
+
+.back-link {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  text-decoration: none;
+  color: #666;
+}
+</style>
+</head>
+
+<body>
+
+<div class="buy-wrapper">
+  <div class="buy-image">
+    <img id="productImage" src="">
+  </div>
+
+  <div class="buy-title" id="productTitle">Loading...</div>
+  <div class="buy-price" id="productPrice"></div>
+  <div class="buy-stock" id="productStock"></div>
+
+  <div class="qty-wrapper">
+    Jumlah:
+    <br>
+    <input type="number" id="qtyInput" min="1" value="1">
+  </div>
+
+  <button class="buy-btn" id="buyButton">BUY VIA WHATSAPP</button>
+
+  <a href="index.html" class="back-link">← Kembali ke Produk</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const supabaseUrl = "https://mrhiptnzoehrueolbpdm.supabase.co";
+const supabaseAnonKey = "sb_publishable_pLpXV7Q6Y9RUZUjRcYKbGA_xhK1OjLB";
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get("id");
+
+let currentProduct = null;
+
+async function loadProduct() {
+
+  if (!productId) {
+    document.body.innerHTML = "Product tidak ditemukan";
+    return;
+  }
+
+  const { data, error } = await supabaseClient
+    .from('products')
+    .select('*')
+    .eq('id', productId)
+    .single();
+
+  if (error || !data) {
+    document.body.innerHTML = "Product tidak ditemukan";
+    return;
+  }
+
+  currentProduct = data;
+
+  document.getElementById('productImage').src = data.image_url;
+  document.getElementById('productTitle').textContent = data.title;
+  document.getElementById('productPrice').textContent = 
+    "Rp" + data.price.toLocaleString();
+
+  const stockEl = document.getElementById('productStock');
+  stockEl.textContent = "Stock tersedia: " + data.stock;
+
+  if (data.stock <= 3) {
+    stockEl.classList.add("low");
+  }
+
+  const qtyInput = document.getElementById('qtyInput');
+  qtyInput.max = data.stock;
+}
+
+loadProduct();
+
+document.getElementById('buyButton').addEventListener('click', () => {
+
+  if (!currentProduct) return;
+
+  const qty = parseInt(document.getElementById('qtyInput').value);
+
+  if (qty < 1) {
+    alert("Jumlah minimal 1");
+    return;
+  }
+
+  if (qty > currentProduct.stock) {
+    alert("Jumlah melebihi stock tersedia!");
+    return;
+  }
+
+  const phone = "6283186934320"; // GANTI NOMOR KAMU
+
+  const message = 
+  `Halo, apakah product ${currentProduct.title} masih tersedia?
+Jumlah: ${qty}`;
+
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, "_blank");
+});
+</script>
+
+</body>
+</html>
