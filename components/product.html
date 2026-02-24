@@ -19,13 +19,13 @@ body {
 ========================= */
 .product-section {
   width: 100%;
-  padding: 32px 0; /* HAPUS padding kiri kanan */
+  padding: 32px 0;
 }
 
 .product-container {
-  max-width: 1350px;      /* ⬅️ SAMA DENGAN CATEGORY */
+  max-width: 1350px;
   margin: 0 auto;
-  padding: 0 16px;        /* ⬅️ SAMA DENGAN CATEGORY */
+  padding: 0 16px;
 
   display: grid;
   grid-template-columns: repeat(auto-fill, 164px);
@@ -126,12 +126,18 @@ body {
   color: #ff6a00;
 }
 
-/* META */
+/* META (UPDATED) */
 .product-meta {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 2px;
   font-size: 11px;
   color: #666;
+}
+
+.product-stock {
+  color: #1b4db1;
+  font-weight: 600;
 }
 
 /* =========================
@@ -150,8 +156,17 @@ body {
 }
 
 </style>
+</head>
+
+<body>
+
 <section class="product-section">
   <div class="product-container" id="product-container">
-    <!-- Product card akan di-inject dari Supabase -->
+
+   
+
   </div>
 </section>
+
+</body>
+</html>
